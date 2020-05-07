@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Dodajenje igralca</title>
+</head>
+<body>
+    <h2>Dodajanje igralca</h2>
+    
+    <p>Tukaj spet začnemo z import pygame, in dodal sem še črno barvo.</p>
+    <p>Najprej sem moral dodati Paddle(očitno se tako igralec v tej igri tako imenuje), da se bo prikazal kot "Sprite".</p>
+    <p>class Paddle(pygame.sprite.Sprite),to je ukaz.</p>
+    Nato dodamo še naslednje ukaze za ta razred
+    <ul>
+        <li>def __init__(self, color, width, height):</li>
+        <li>super().__init__()</li>
+        <li>self.image = pygame.Surface([width, height])</li>
+        <li>self.image.fill(BLACK)</li>
+        <li>self.image.set_colorkey(BLACK)</li>
+        <li>pygame.draw.rect(self.image, color, [0, 0, width, height])</li>
+        <li>self.rect = self.image.get_rect()</li>
+   </ul>
+<p>Ta program sem shranil kot paddle.py</p>
+Tako bi moral izgledati program paddle.py<br>
+<img src="paddle.PNG"><br>
+Sedaj se moramo vrniti v main.py
+   
+    <p>Pod ukazom import pygame dodamo še "from paddle import paddle"</p>    
+   <p>Pod ukazi, ki nam bodo odprli program v novem oknu zapišemo naslednje ukaze:</p> 
+   <ul>
+     <li>all_sprites_list = pygame.sprite.Group(), je list, ki bo vseboval vse Sprite, ki jih bomo uporabljali.</li>
+     <li>paddle = Paddle(LIGHTBLUE, 100, 10), ta ukaz nam pove barvo igralca</li>
+     <li>paddle.rect.x = 350, ta ukaz pove kako daleč od levega roba se nahaja</li>
+     <li>paddle.rect.y = 560, ta pa nam pove kako visoko se nahaja</li>
+   </ul> 
+   <p>Paddle moramo dodati v naš list, toraj napišemo še "all_sprites_list.add(paddle)</p> 
+    
+   <p>V zanko dodamo še ukaza:</p> 
+    <ul>
+        <li>all_sprites_list.update()</li>
+        <li>all_sprites_list.draw(screen)</li>
+        
+    </ul>
+   Na koncu bi moralo takole zgledati:<br>
+   <img src="main2.PNG">
+</body>
+</html>

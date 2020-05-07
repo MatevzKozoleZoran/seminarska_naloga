@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Dodajanje kock za razbijanje</title>
+</head>
+<body>
+   <h2>Dodajenje kock za razbijanje</h2>
+    <p>Na koncu moramo še dodati kocke, če se žogica dotakne spodnjega roba izgubimo življenje, če razbijemo vse kocke se prikaže napis "Level complete", če izgubimo vsa življenja se pokaže napis"Game over" in točkovnik, da če razbijemo kocko dobimo 1 točko.</p> 
+    <p>Najprej naredimo novo datoteko in pri njej tudi začnemo z import pygame. Spet dodamo črno barvo.</p>
+    <p>Naredimo še zadnji class: class Brick(pygame.sprite.Sprite</p>
+    Napišemo naslednje ukaze:
+    <ul>
+        <li>def __init__(self, color, width, height):</li>
+        <li>super().__init__()</li>
+        <li>self.image = pygame.Surface([width, height])</li>
+        <li>self.image.fill(BLACK)</li>
+        <li>self.image.set_colorkey(BLACK)</li>
+        <li>pygame.draw.rect(self.image, color, [0, 0, width, height])</li>
+        <li>self.rect = self.image.get_rect()</li>
+    </ul>
+    <p>Takole bi morala izgledati datoteka:</p>
+    <img src="brick.PNG">
+    <p>To datoteko shranimo kot brick.py</p>
+    <p>Ponovno se vrnemo na main.py, kjer ponovno napišemo from brick import Brick.Nato naredimo 3 vrstice kock, ki jih bomo razbijali:</p>
+    <ul>
+        <li>all_bricks = pygame.sprite.Group()</li>
+        <li>for i in range(7):</li>
+        <li>brick = Brick(RED,80,30)</li>
+        <li>brick.rect.x = 60 + i* 100</li>
+        <li>brick.rect.y = 60</li>
+        <li>all_sprites_list.add(brick)</li>
+        <li>all_bricks.add(brick)</li>
+        <li>for i in range(7):</li>
+        <li>brick = Brick(ORANGE,80,30)</li>
+        <li>brick.rect.x = 60 + i* 100</li>
+        <li>brick.rect.y = 100</li>
+        <li>all_sprites_list.add(brick)</li>
+        <li>all_bricks.add(brick)</li>
+        <li>for i in range(7):</li>
+        <li>brick = Brick(YELLOW,80,30)</li>
+        <li>brick.rect.x = 60 + i* 100</li>
+        <li>brick.rect.y = 140</li>
+        <li>all_sprites_list.add(brick)</li>
+        <li>all_bricks.add(brick)</li>
+    </ul>
+    <p>Pod tistim kamor smo zapisali ukaze kjer naj se žogica odbija od robov moramo še napisati ukaz, da če je število življenj 0 se pokaže napis "Game Over", in da naj se potem čez 3 sekunde program zapre:</p>
+    <ul>
+        <li>lives -= 1</li>
+        <li>if lives == 0:</li>
+        <li>font = pygame.font.Font(None, 74)</li>
+        <li>text = font.render("GAME OVER", 1, WHITE)</li>
+        <li>screen.blit(text, (250,300))</li>
+        <li>pygame.display.flip()</li>
+        <li>pygame.time.wait(3000)</li>
+        <li>carryOn=False</li>
+    </ul>
+    <p>In na koncu še napišemo kaj se zgodi, če se žogica dotakne kocke:</p>
+    <ul>
+        <li>brick_collision_list = pygame.sprite.spritecollide(ball,all_bricks,False)</li>
+        <li>for brick in brick_collision_list:</li>
+        <li>ball.bounce()</li>
+        <li>score += 1</li>
+        <li>brick.kill()</li>
+        <li>if len(all_bricks)==0:</li>
+        <li>font = pygame.font.Font(None, 74)</li>
+        <li>text = font.render("LEVEL COMPLETE", 1, WHITE)</li>
+        <li>screen.blit(text, (200,300))</li>
+        <li>pygame.display.flip()</li>
+        <li>pygame.time.wait(3000)</li>
+        <li>carryOn=False</li>
+    </ul>
+    <p>Tako izgleda celotna koda:</p>
+    <img src="full1.PNG"><img src="full2.PNG">
+    <p>Ko to vse napišemo, smo naredili delujočo igro.</p>
+    
+</body>
+</html>

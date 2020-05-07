@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Dodajanje žogice</title>
+</head>
+<body>
+   <h2>Dodajanje žogice</h2>
+    <p>Naredimo novo datoteko in ponovno zapišemo import pygame.</p>
+    <p>Pod tem zapišemo from random import randint</p>
+    <p>Za barvo pa damo spet črno.</p>
+    <p>Ponovno moramo narediti nov class, kot smo ga pri Paddle-u, zato napišemo class Ball(pygame.sprite.Sprite).</p>
+    <p>Nato zapišemo naslednje ukaze:</p>
+    <ul>
+        <li>def __init__(self, color, width, height):</li>
+        <li>super().__init__()</li>
+        <li>self.image = pygame.Surface([width, height])</li>
+        <li>self.image.fill(BLACK)</li>
+        <li>self.image.set_colorkey(BLACK)</li>
+        <li>pygame.draw.rect(self.image, color, [0, 0, width, height])</li>
+        <li>self.velocity = [randint(4,8),randint(-8,8)]</li>
+        <li>self.rect = self.image.get_rect()</li>
+        <li>def update(self):</li>
+        <li>self.rect.x += self.velocity[0]</li>
+        <li>self.rect.y += self.velocity[1]</li>
+    </ul>
+    <p>Na koncu bi koda morala izgledati takole:</p>
+    <img src="Zogica.PNG">
+    <p>Ta program shranimo kot ball.py</p>
+    <p>Vrnemo se nazaj na main.py in na vrhu dopišemo from ball import Ball.</p>
+    <p>Dodati moramo še Sprite za žogico zato kar pod kodo za Paddle Sprite dopišemo:</p>
+    <ul>
+        <li>ball = Ball(WHITE,10,10)</li>
+        <li>ball.rect.x = 345</li>
+        <li>ball.rect.y = 195</li>
+    </ul>
+    <p>V sprite list moramo še dodati Sprite žogice zato še dopišemo all_sprites_list.add(ball)</p>
+    <p>Dodati moramo še kodo da se bo žogica odbijala od vseh 4-ih sten:</p>
+    <ul>
+        <li>if ball.rect.x>=790:</li>
+        <li>ball.velocity[0] = -ball.velocity[0]</li>
+        <li>if ball.rect.x<=0:</li>
+        <li>ball.velocity[0] = -ball.velocity[0]</li>
+        <li>if ball.rect.y>590:</li>
+        <li>ball.velocity[1] = -ball.velocity[1]</li>
+        <li>if ball.rect.y<40:</li>
+        <li>ball.velocity[1] = -ball.velocity[1]</li>
+    </ul>
+    <p>Sedaj moramo še dodati, kaj e zgodi če se žogica dotakne Paddle-a, hočemo da se odbije:</p>
+    <p>Najprej v ball.py napišemo:</p>
+    <ul>
+        <li>def bounce(self):</li>
+        <li>self.velocity[0] = -self.velocity[0]</li>
+        <li>self.velocity[1] = randint(-8,8)</li>
+    </ul>
+    <p>Nato pa še v main.py dopišemo:</p>
+    <ul>
+        <li>if pygame.sprite.collide_mask(ball, paddle):</li>
+        <li>ball.rect.x -= ball.velocity[0]</li>
+        <li>ball.rect.y -= ball.velocity[1]</li>
+        <li>ball.bounce()</li>
+    </ul>
+</body>
+</html>

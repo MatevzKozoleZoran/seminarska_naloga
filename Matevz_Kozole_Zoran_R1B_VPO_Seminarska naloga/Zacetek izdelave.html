@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Začetek izdelave</title>
+</head>
+<body>
+    <h2>Začetek izdelave</h2>
+   
+   <p>Najprej moramo zapisati 2 vrstici kode, ki sta:</p>
+   <ul>
+       <li>import pygame</li>
+       <li>pygame.init()</li>
+   </ul>
+   
+   <p>S tem smo ukazali da naj program uporabi knjižnico Pygame.</p>
+   
+   <p>Nato zapišemo katere barve bi radi uporabljali.Zapisati moramo 3 številke, ki povejo katera barva se prikaže. Zgled za rdečo barvo:</p>
+   <p>RED = (255, 0, 0)</p>
+   
+   <p>Jaz sem uporabil 6 barv, ki so: rdeča, oranžna, rumena, svetlo modra, temno modra in bela. Če jih hočemo spremeniti ali dodati, moramo samo zapisati tiste 3 številke.</p>
+   
+   <p>Dodal sem še 2 spremenljivki: lives in score, ki sem jih uporabil kasneje.</p>
+   
+   <p>Napisati moramo tudi kodo, da se bo program sploh odprl in se ne bo zaprl, kako veliko bo to okno, ter naslov programa:</p>
+   
+   <ul>
+       <li>size = (800, 600)</li>
+       <li>screen = pygame.display.set_mode(size)</li>
+       <li>pygame.display.set_caption("Breakout Game")</li>
+   </ul>
+   
+   <p>Napisati moramo tudi zanko, ki vsebuje 3 glavne oddelke:</p>
+   <ul>
+       <li>Kontrole, torej kako se igra upravlja,</li>
+       <li>Kaj se zgodi ko se igro igra,</li>
+       <li>Osvežitev zaslona, da se stvari v igri premikajo</li>
+   </ul>
+
+   <p>Preden napišemo zanko moramo najprej napisati:</p>
+     <ul>
+         <li>carryOn = True, ki nam pove, da se bo zanka odvijala dokler ne zapremo programa.</li>
+         <li>clock = pygame.time.Clock(), ta ukaz se bo uporabljal za kako hitro se bo zaslon posodabljal.</li>
+     </ul>
+       
+<h2>Zanka</h2>         
+   <p>Glavni del zanke:</p>        
+     <ul>
+         <li>While carryOn:</li>
+         <li>for event in pygame.event.get():, se uporablja ko nekaj naredimo</li>
+         <li>if event.type == pygame.QUIT: carryOn = False, če zapremo program se zanka preneha.</li>
+     </ul>        
+    <p>Zapišemo barvo ozadja:<br>
+    screen.fill(DARKBLUE)<br>
+    pygame.draw.line(screen, WHITE, [0, 38], [800, 38], 2)</p>           
+                   
+   <p>Da nam prikaže življenja in točke na vrhu okna zapišemo:<br> 
+   font = pygame.font.Font(None, 34)<br>
+    text = font.render("Score: " + str(score), 1, WHITE)<br>
+    screen.blit(text, (20,10))<br>
+    text = font.render("Lives: " + str(lives), 1, WHITE)<br>
+    screen.blit(text, (650,10))                   
+   </p>                  
+                       
+   <p>Da nam posodobi točke in življenja zapišemo:<br>
+    pygame.display.flip()                      
+   </p>                      
+   <p>Omejimo FPS na 60:<br>
+    clock.tick(60)                        
+    </p>                        
+   <p>Ko končamo z zanko, se program zapre:<br>
+    pygame.quit()                         
+   </p>   
+   <p>Ta program sem shranil kot main.py</p>
+  u
+   Na koncu bi morala koda izgledati takole:<br>
+   <img src="Zacetek%20izdelave.PNG">
+    
+</body>
+</html>

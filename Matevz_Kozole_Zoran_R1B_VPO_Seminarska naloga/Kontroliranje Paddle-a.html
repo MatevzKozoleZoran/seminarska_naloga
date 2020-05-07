@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Kontroliranje Paddle-a</title>
+</head>
+<body>
+    <h2>Kontroliranje Paddle-a</h2>
+    
+    <p>Za ta korak sem se vrnil nazaj na paddle.py</p>
+    
+    <p>Napišemo kodo za premik v levo:</p>
+    <ul>
+        <li>def moveLeft(self, pixels):</li>
+        <li>self.rect.x -= pixels</li>
+        <li>if self.rect.x < 0:</li>
+        <li>self.rect.x = 0, to kodo napišemo da Paddle ne more iti z zaslona</li>
+    </ul>
+    <p>Nato pa napišemo še za premik v desno:</p>
+    <ul>
+        <li>def moveRight(self, pixels):</li>
+        <li>self.rect.x += pixels</li>
+        <li>if self.rect.x > 700:</li>
+        <li>self.rect.x = 700</li>
+    </ul>
+    <p>Ko to naredimo bi moral paddle.py izgledati takole:</p>
+    <img src="paddle2.PNG"><br>
+    Na paddle.py se ne bo treba več vračati.
+    <p>Vrnemo se na main.py, da dodamo na katere gumbe se bo Paddle premikal.</p>
+    <p>Pod zanko dodamo naslednje ukaze:</p>
+    <ul>
+        <li>keys = pygame.key.get_pressed()</li>
+        <li>if keys[pygame.K_LEFT]:</li>
+        <li> paddle.moveLeft(5)</li>
+        <li>if keys[pygame.K_RIGHT]:</li>
+        <li>paddle.moveRight(5)</li>
+    </ul>
+    <p>Sedaj če odpremo ta program bomo lahko že premikali Paddle.</p>
+</body>
+</html>
